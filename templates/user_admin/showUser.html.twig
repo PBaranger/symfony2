@@ -1,0 +1,44 @@
+{% extends 'home.html.twig' %}
+{% block title %}Liste des articles !
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.commentaire {
+			text-align: center;
+			margin: 10px 0;
+			background-color: #e9ecef;
+			padding: 10px;
+		}
+	</style>
+
+	<div class="dcard">
+		<div class="large-wrapper">
+
+			<table class="table table-hover table-bordered">
+				<tr>
+					<th>ID</th>
+					<th>Email</th>
+					<th>Rôles</th>
+				</tr>
+
+				<tr>
+					<td>{{user.id}}</td>
+					<td>{{user.email}}</td>
+					<td>{{ user.roles | join(', ') }}</td>
+
+				</tr>
+			</table>
+		</div>
+		<a href="{{ path('app_user_edit', {id: user.id}) }}" class="btn btn-warning">Éditer</a>
+		<a href="{{ path('app_user_delete', {id: user.id}) }}" class="btn btn-danger">Supprimer</a>
+
+
+	</div>
+{% endblock %}

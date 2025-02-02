@@ -1,0 +1,65 @@
+{% extends 'home.html.twig' %}
+{% block title %}Hello ArticleController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Hello
+			{{ controller_name }}! ✅</h1>
+
+		This friendly message is coming from:
+		<ul>
+			<li>Your controller at
+				<code>/app/src/Controller/ArticleController.php</code>
+			</li>
+			<li>Your template at
+				<code>/app/templates/article/index.html.twig</code>
+			</li>
+		</ul>
+
+		<h2>Trois derniers articles créé</h2>
+		<table class="table table-hover table-bordered">
+			<tr>
+				<td>Id</td>
+				<td>Titre</td>
+				<td>Texte</td>
+				<td>Est publié</td>
+				<td>Date de création</td>
+			</tr>
+			{% for article in liste_articles %}
+
+				<tr>
+					<td>{{article.id}}</td>
+					<td>{{article.titre}}</td>
+					<td>{{ article.texte|u.truncate(50)|raw }}...</td>
+					<td>
+						{% if (article.publie) %}
+							{{ ux_icon('bi:check2-square', {height: '16px', width: '16px'}) }}
+						{% else %}
+							{{ ux_icon('bi:square', {height: '16px', width: '16px'}) }}
+
+						{% endif %}
+					</td>
+					<td>{{article.date|date('Y-m-d H:i:s')}}</td>
+				</tr>
+			{% else %}
+				<p>Aucun article disponible.</p>
+			{% endfor %}
+
+
+		</table>
+	</div>
+{% endblock %}

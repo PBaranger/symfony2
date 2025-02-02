@@ -1,0 +1,37 @@
+{% extends 'home.html.twig' %}
+{% block title %}Liste des utilisateurs !
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+	</style>
+
+	<div class="dcard">
+		<div class="large-wrapper">
+
+			<table class="table table-hover table-bordered">
+				<tr>
+					<th>ID</th>
+					<th>Email</th>
+					<th>Rôles</th>
+				</tr>
+				{% for user in liste_user %}
+					<tr>
+						<td>
+							<a href={{"showUser/"~user.id}}>{{user.id}}</a>
+						</td>
+						<td>{{ user.email }}</td>
+						<td>{{ user.roles|join(', ') }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+{% endblock %}

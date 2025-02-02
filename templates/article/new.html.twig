@@ -1,0 +1,51 @@
+{% extends 'home.html.twig' %}
+
+{% block title %}Ajouter un nouvel article
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+			padding: 1em;
+			background:rgb(240, 240, 240);
+			border-radius: 8px;
+		}
+
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Ajouter un nouvel article</h1>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">{{ message }}</div>
+		{% endfor %}
+
+
+		{{ form_start(form) }}
+
+		<div class="form-group">
+			{{ form_label(form.titre) }}
+			{{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(form.texte) }}
+			{{ form_widget(form.texte, {'attr': {'class': 'form-control'}}) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(form.publie) }}
+			{{ form_widget(form.publie) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(form.date) }}
+			{{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+		</div>
+		<button type="submit" class="btn btn-primary">Ajouter</button>
+		<a href="{{ path('app_article') }}" class="btn btn-secondary">Annuler</a>
+
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
